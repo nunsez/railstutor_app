@@ -12,11 +12,12 @@ gem 'slim-rails'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'minitest-reporters'
 end
 
 group :development do
-  # gem 'spring'
   # gem 'listen'
+  # gem 'spring'
   gem 'web-console'
 end
 
