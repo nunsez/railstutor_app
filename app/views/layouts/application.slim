@@ -9,4 +9,6 @@ html
     = render partial: 'layouts/bootstrap' 
     = stylesheet_link_tag 'application'
   body
-    = yield
+    = render partial: 'layouts/header'
+    .container
+      = yield
