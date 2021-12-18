@@ -184,7 +184,7 @@ DEPENDENCIES
   minitest-reporters
   puma (~> 5.0)
   rails!
-  sass-rails (~> 6.0)
+  sass-rails
   slim-rails
   sprockets-rails
   sqlite3 (~> 1.4)
