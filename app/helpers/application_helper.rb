@@ -3,7 +3,7 @@ module ApplicationHelper
     base_title = 'Railstutor App'
 
     return base_title if page_title.empty?
-    return sanitize "#{page_title} | #{base_title}"
+    return "#{page_title} | #{base_title}".html_safe
   end
 
   def nav_classes(nav = nil)
