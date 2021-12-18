@@ -1,6 +1,13 @@
 @import 'variables';
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
+  flex-grow: 1;
   padding: 1.75rem 0;
 }
 
@@ -12,5 +19,9 @@ main {
   a {
     color: $light-gray;
     text-decoration: none;
+
+    &:hover {
+      color: $dark;
+    }
   }
 }
