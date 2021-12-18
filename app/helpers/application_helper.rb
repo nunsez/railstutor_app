@@ -3,6 +3,6 @@ module ApplicationHelper
     base_title = 'Railstutor App'
 
     return base_title if page_title.empty?
-    return "#{page_title} | #{base_title}"
+    return sanitize "#{page_title} | #{base_title}"
   end
 end
