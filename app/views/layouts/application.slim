@@ -2,8 +2,7 @@ doctype html
 html
   head
     title
-      => yield :title
-      | | Railstutor App
+      = full_title(yield :title)
     meta name='viewport' content='width=device-width,initial-scale=1'
     = csrf_meta_tags
     = csp_meta_tag
