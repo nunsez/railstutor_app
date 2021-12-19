@@ -7,6 +7,7 @@ gem 'rails', github: 'rails/rails', branch: '7-0-stable'
 gem 'puma', '~> 5.0'
 gem 'sqlite3', '~> 1.4' # dependencies: sudo apt install -y libsqlite3-dev
 
+gem 'bcrypt'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
