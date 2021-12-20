@@ -1,0 +1,32 @@
+aside {
+  section {
+    padding: 0.625rem 0;
+    margin-top: 1.25rem;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    span {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      text-align: start;
+      letter-spacing: -1px;
+      margin-top: 0;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 0.625rem;
+}
+
+.gravatar_edit {
+  margin-top: 1rem;
+}

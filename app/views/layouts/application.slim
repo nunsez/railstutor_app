@@ -13,3 +13,4 @@ html
     main.container
       = yield
     = render partial: 'layouts/footer'
+    = debug params if Rails.env.development?
