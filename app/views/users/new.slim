@@ -1,4 +1,23 @@
 - provide :title, 'Signup'
 
-h1 Users#new
-p Find me in app/views/users/new.html.slim
+h1.text-center Sign up
+
+.row.mt-5
+  .col-md-6.col.mx-auto
+    = form_for @user do |f|
+      .mb-3
+        = f.label :name
+        = f.text_field :name
+
+      .mb-3
+        = f.label :email
+        = f.text_field :email
+      .mb-3
+        = f.label :password
+        = f.text_field :password
+      .mb-3
+        = f.label :password_confirmation
+        = f.text_field :password_confirmation
+
+      .mb-3
+        = f.submit 'Create my account', class: 'btn btn-primary'
