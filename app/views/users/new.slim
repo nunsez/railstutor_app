@@ -6,6 +6,8 @@ h1.text-center Sign up
   .col-md-6.col.mx-auto
     = form_for @user do |f|
       .mb-3
+        = render 'shared/error_messages'
+      .mb-3
         = f.label :name
         = f.text_field :name
 

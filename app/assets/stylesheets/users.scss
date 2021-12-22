@@ -1,3 +1,5 @@
+@import 'variables';
+
 aside {
   section {
     padding: 0.625rem 0;
@@ -37,5 +39,13 @@ aside {
   }
   input {
     width: 100%;
+  }
+}
+
+#error_explanation {
+  color: $clr-error;
+
+  ul {
+    margin-bottom: 2rem;
   }
 }

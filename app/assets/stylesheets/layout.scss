@@ -18,11 +18,11 @@ main {
   justify-content: space-between;
 
   a {
-    color: $light-gray;
+    color: $clr-light-gray;
     text-decoration: none;
 
     &:hover {
-      color: $dark;
+      color: $clr-dark;
     }
   }
 }
