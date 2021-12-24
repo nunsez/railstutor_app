@@ -5,7 +5,6 @@ ruby '3.0.2'
 
 gem 'rails', github: 'rails/rails', branch: '7-0-stable'
 gem 'puma', '~> 5.0'
-gem 'sqlite3', '~> 1.4' # dependencies: sudo apt install -y libsqlite3-dev
 
 gem 'bcrypt'
 gem 'sass-rails'
@@ -19,6 +18,7 @@ end
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
   gem 'minitest-reporters'
+  gem 'sqlite3', '~> 1.4' # dependencies: sudo apt install -y libsqlite3-dev
 end
 
 group :development do
