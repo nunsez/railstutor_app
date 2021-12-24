@@ -34,6 +34,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_redirected_to User.last
     assert_equal 'Welcome to the Sample App!', flash[:success]
     follow_redirect!
+    refute flash.nil?
     assert_select 'h1', 'user@example.com'
   end
 end
