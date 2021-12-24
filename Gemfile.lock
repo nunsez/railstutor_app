@@ -135,6 +135,7 @@ GEM
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     rake (13.0.6)
+    rbs (2.0.0)
     reline (0.2.7)
       io-console (~> 0.5)
     rexml (3.2.5)
@@ -167,6 +168,8 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
+    typeprof (0.21.1)
+      rbs (>= 1.8.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     web-console (4.2.0)
@@ -189,11 +192,13 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails!
+  rbs
   rexml
   sass-rails
   slim-rails
   sprockets-rails
   sqlite3 (~> 1.4)
+  typeprof
   tzinfo-data
   web-console
 
