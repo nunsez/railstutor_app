@@ -137,6 +137,7 @@ GEM
     rake (13.0.6)
     reline (0.2.7)
       io-console (~> 0.5)
+    rexml (3.2.5)
     ruby-progressbar (1.11.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -188,6 +189,7 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails!
+  rexml
   sass-rails
   slim-rails
   sprockets-rails
