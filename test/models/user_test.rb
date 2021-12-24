@@ -58,6 +58,7 @@ class UserTest < ActiveSupport::TestCase
       user.name@example..com
       foo@bar_baz.com
       foo@bar+baz.com
+      user@invalid
     ]
 
     invalid_addresses.each do |address|

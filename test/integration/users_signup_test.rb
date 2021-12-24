@@ -14,6 +14,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal users_path, path
     assert_select 'h1', 'Sign up'
+    assert_select '.alert-danger', 'The form contains 4 errors'
+    assert_select 'li', "Name can't be blank"
+    assert_select 'li', 'Email is invalid'
+    assert_select 'li', 'Password is too short (minimum is 6 characters)'
+    assert_select 'li', "Password confirmation doesn't match Password"
   end
 
   test 'valid signup infromation' do
