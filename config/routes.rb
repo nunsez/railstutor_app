@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'help', to: 'static_pages#help'
   get 'signup', to: 'users#new'
 
-  resources :users
+  resources :users, except: %w[new]
 
   root 'static_pages#home'
 end
