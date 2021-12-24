@@ -12,6 +12,10 @@ gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
   gem 'minitest-reporters'
