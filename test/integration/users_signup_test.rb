@@ -13,7 +13,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_equal users_path, path
-    assert_select 'h1', text: 'Sign up'
+    assert_select 'h1', 'Sign up'
   end
 
   test 'valid signup infromation' do
@@ -26,6 +26,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: 'password' } }
     end
 
-    assert_redirected_to controller: 'users', action: 'show', id: 1
+    assert_redirected_to User.last
+    assert_equal 'Welcome to the Sample App!', flash[:success]
+    follow_redirect!
+    assert_select 'h1', 'user@example.com'
   end
 end
