@@ -13,13 +13,13 @@ h1.text-center Sign up
 
       .mb-3
         = f.label :email
-        = f.text_field :email
+        = f.email_field :email
       .mb-3
         = f.label :password
-        = f.text_field :password
+        = f.password_field :password
       .mb-3
         = f.label :password_confirmation
-        = f.text_field :password_confirmation
+        = f.password_field :password_confirmation
 
       .mb-3
         = f.submit 'Create my account', class: 'btn btn-primary'
