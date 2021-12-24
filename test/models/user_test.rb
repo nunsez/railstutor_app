@@ -13,25 +13,25 @@ class UserTest < ActiveSupport::TestCase
   test 'name should be present' do
     @user.name = ' '
 
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test 'email should be present' do
     @user.email = ' '
 
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test 'name should not be too long' do
     @user.name = 'a' * 51
 
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test 'email should not be too long' do
     @user.email = "#{'a' * 244}@example.com"
 
-    assert_not @user.valid?
+    refute @user.valid?
   end
 
   test 'email validation should accept valid addresses' do
@@ -64,7 +64,7 @@ class UserTest < ActiveSupport::TestCase
     invalid_addresses.each do |address|
       @user.email = address
 
-      assert_not @user.valid?
+      refute @user.valid?
     end
   end
 
@@ -73,7 +73,7 @@ class UserTest < ActiveSupport::TestCase
     duplicate_user.email = @user.email.upcase
     @user.save
 
-    assert_not duplicate_user.valid?
+    refute duplicate_user.valid?
   end
 
   test 'email addresses should be saved as lower case' do
@@ -89,6 +89,6 @@ class UserTest < ActiveSupport::TestCase
     @user.password = invalid_password
     @user.password_confirmation = invalid_password
 
-    assert_not @user.valid?
+    refute @user.valid?
   end
 end
