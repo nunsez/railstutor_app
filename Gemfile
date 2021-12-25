@@ -24,9 +24,7 @@ end
 
 group :development do
   # gem 'listen'
-  gem 'rbs'
   # gem 'spring'
-  gem 'typeprof'
   gem 'web-console'
 end
 
