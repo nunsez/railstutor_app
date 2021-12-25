@@ -6,10 +6,10 @@ html
     meta name='viewport' content='width=device-width,initial-scale=1'
     = csrf_meta_tags
     = csp_meta_tag
-    = render partial: 'layouts/bootstrap' 
+    = render 'layouts/bootstrap'
     = stylesheet_link_tag 'application'
   body
-    = render partial: 'layouts/header'
+    = render 'layouts/header'
     main.container
       = render 'layouts/flash'
       = yield
