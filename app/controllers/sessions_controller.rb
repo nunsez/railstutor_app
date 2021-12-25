@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     @login_form = LoginForm.new(sessions_params)
 
     if @login_form.valid?
+      log_in @login_form.user
       flash[:success] = "Welcome back, #{@login_form.user.email}"
 
       redirect_to @login_form.user
