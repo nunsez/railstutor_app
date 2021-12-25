@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @login_form.valid?
       flash[:success] = "Welcome back, #{@login_form.user.email}"
 
-      redirect_to user_path(@login_form.user)
+      redirect_to @login_form.user
     else
       render :new
     end
