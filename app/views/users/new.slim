@@ -4,7 +4,7 @@ h1.text-center Sign up
 
 .row.mt-5
   .col-md-6.mx-auto
-    = form_for @user do |f|
+    = form_with model: @user, class: 'new_user' do |f|
       .mb-3
         = render 'shared/error_messages'
       .mb-3
