@@ -1,10 +1,28 @@
 header.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bg-gradient
   .container
     = link_to 'Sample App', root_path, id: 'logo', class: 'navbar-brand'
-    button.navbar-toggler type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'
+    button.navbar-toggler [ type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav'
+                            aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation' ]
       span.navbar-toggler-icon
+
     nav#navbarNav.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav
         li.nav-item = link_to 'Home', root_path, class: nav_classes('home')
         li.nav-item = link_to 'Help', help_path, class: nav_classes('help')
-        li.nav-item = link_to 'Log in', login_path, class: nav_classes('login')
+
+        - if logged_in?
+          li.nav-tem = link_to 'Users', '#', class: nav_classes('users')
+          li.nav-tem.dropdown
+            = link_to 'Account', '#', id: 'navbarDropdownMenuLink',
+                                      class: 'nav-link dropdown-toggle',
+                                      role: 'button', data: { 'bs-toggle': 'dropdown' },
+                                      aria: { expanded: false }
+
+            ul.dropdown-menu aria-labelledby='navbarDropdownMenuLink'
+              li = link_to 'Profile', current_user, class: 'dropdown-item'
+              li = link_to 'Settings', '#', class: 'dropdown-item'
+              li: hr.dropdown-divider
+              li = link_to 'Log out', logout_path, method: :delete, class: 'dropdown-item'
+
+        - else
+          li.nav-item = link_to 'Log in', login_path, class: nav_classes('login')

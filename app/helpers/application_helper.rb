@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include AuthConcern
+
   def full_title(page_title = '')
     base_title = 'Railstutor App'
 
