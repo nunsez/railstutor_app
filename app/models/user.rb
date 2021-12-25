@@ -10,6 +10,12 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
 
+  def valid_password?(password)
+    authenticate(password) if password_digest.present?
+  end
+
+  def guest? = false
+
   private
 
   def downcase_email
