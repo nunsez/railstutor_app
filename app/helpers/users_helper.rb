@@ -10,6 +10,6 @@ module UsersHelper
                            path: "/avatar/#{id}",
                            query: hash.to_query
 
-    image_tag uri.request_uri, alt: user.name, class: 'gravatar'
+    image_tag uri.to_s, alt: user.name, class: 'gravatar'
   end
 end
