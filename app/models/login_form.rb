@@ -1,8 +1,5 @@
 class LoginForm
-  include ActiveModel::SecurePassword
   include ActiveModel::Validations
-
-  has_secure_password validations: false
 
   validates :email, presence: true
   validates :password, presence: true
