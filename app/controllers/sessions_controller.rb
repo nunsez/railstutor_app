@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to root_path, status: :found unless current_user.guest?
+
     @login_form = LoginForm.new
   end
 

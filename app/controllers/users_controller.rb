@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def new
+    redirect_to current_user, status: :found unless current_user.guest?
+
     @user = User.new
   end
 
