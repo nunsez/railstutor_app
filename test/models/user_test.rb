@@ -7,31 +7,31 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'should be valid' do
-    assert @user.valid?
+    assert_predicate @user, :valid?
   end
 
   test 'name should be present' do
     @user.name = ' '
 
-    refute @user.valid?
+    refute_predicate @user, :valid?
   end
 
   test 'email should be present' do
     @user.email = ' '
 
-    refute @user.valid?
+    refute_predicate @user, :valid?
   end
 
   test 'name should not be too long' do
     @user.name = 'a' * 51
 
-    refute @user.valid?
+    refute_predicate @user, :valid?
   end
 
   test 'email should not be too long' do
     @user.email = "#{'a' * 244}@example.com"
 
-    refute @user.valid?
+    refute_predicate @user, :valid?
   end
 
   test 'email validation should accept valid addresses' do
@@ -46,7 +46,7 @@ class UserTest < ActiveSupport::TestCase
     valid_addresses.each do |address|
       @user.email = address
 
-      assert @user.valid?
+      assert_predicate @user, :valid?
     end
   end
 
@@ -64,7 +64,7 @@ class UserTest < ActiveSupport::TestCase
     invalid_addresses.each do |address|
       @user.email = address
 
-      refute @user.valid?
+      refute_predicate @user, :valid?
     end
   end
 
@@ -73,7 +73,7 @@ class UserTest < ActiveSupport::TestCase
     duplicate_user.email = @user.email.upcase
     @user.save
 
-    refute duplicate_user.valid?
+    refute_predicate duplicate_user, :valid?
   end
 
   test 'email addresses should be saved as lower case' do
@@ -89,6 +89,6 @@ class UserTest < ActiveSupport::TestCase
     @user.password = invalid_password
     @user.password_confirmation = invalid_password
 
-    refute @user.valid?
+    refute_predicate @user, :valid?
   end
 end
