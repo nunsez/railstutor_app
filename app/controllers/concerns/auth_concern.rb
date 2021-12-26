@@ -7,7 +7,8 @@ module AuthConcern
 
   def log_out
     session.delete id
-    session.clear
+    @current_user = nil
+    #session.clear
   end
 
   def logged_in? = !current_user.guest?
