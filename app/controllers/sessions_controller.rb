@@ -10,15 +10,15 @@ class SessionsController < ApplicationController
       log_in @login_form.user
       flash[:success] = "Welcome back, #{@login_form.user.email}"
 
-      redirect_to @login_form.user
+      redirect_to @login_form.user, status: :see_other
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     log_out
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   private
