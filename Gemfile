@@ -7,9 +7,11 @@ gem 'rails', github: 'rails/rails', branch: '7-0-stable'
 gem 'puma', '~> 5.0'
 
 gem 'bcrypt'
+gem 'importmap-rails'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
+gem 'turbo-rails'
 
 group :production do
   gem 'pg'
