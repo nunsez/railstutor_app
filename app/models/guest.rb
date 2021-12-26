@@ -8,4 +8,6 @@ class Guest
   def email = nil
 
   def created_at = nil
+
+  def ==(_) = true
 end
