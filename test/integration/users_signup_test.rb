@@ -31,10 +31,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                           password_confirmation: 'password' } }
     end
 
-    assert_redirected_to User.last
+    fresh_user = User.last
+    assert_redirected_to fresh_user
     assert_equal 'Welcome to the Sample App!', flash[:success]
     follow_redirect!
-    refute flash.nil?
+    assert logged_in?
+    assert_equal fresh_user, current_user
+    refute_nil flash
     assert_select 'h1', 'user@example.com'
   end
 end
