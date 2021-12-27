@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
+
   has_secure_password
 
   before_save :downcase_email
@@ -14,6 +16,11 @@ class User < ApplicationRecord
     authenticate(password) if password_digest.present?
   end
 
+  def remember
+    self.remember_token = User.new_token
+    update_attribute :remember_digest, User.digest(remember_token)
+  end
+
   def guest? = false
 
   def self.digest(string)
@@ -24,9 +31,11 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def self.new_token = SecureRandom.urlsafe_base64
+
   private
 
   def downcase_email
-    email.downcase!
+    self.email.downcase!
   end
 end
