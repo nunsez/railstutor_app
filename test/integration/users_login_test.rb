@@ -27,7 +27,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     post login_path, params: { session: { email: @user.email,
-                                          password: 'password' } }
+                                          password: DEFAULT_PASSWORD } }
 
     # Logint asserts
     assert logged_in?

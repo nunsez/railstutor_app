@@ -27,8 +27,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_difference -> { User.count }, 1 do
       post users_path,  params: { user: { name: 'Example User',
                                           email: 'user@example.com',
-                                          password: 'password',
-                                          password_confirmation: 'password' } }
+                                          password: DEFAULT_PASSWORD,
+                                          password_confirmation: DEFAULT_PASSWORD } }
     end
 
     fresh_user = User.last
