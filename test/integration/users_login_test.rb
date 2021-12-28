@@ -48,11 +48,15 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # FIXME Use method for apply logout changes for View.
     # I don't know why @current_user from View and @current_user from Controller different
     # And I don't know how to fix it and save same AuthConcern logic for both View and Controller
-    log_out 
+    # log_out # <-- no problem at this time, so a commented that method
     refute logged_in?
     assert_equal Guest.new, current_user
 
     assert_redirected_to root_path
+
+    # imitate second browser logout
+    delete logout_path
+
     follow_redirect!
     assert_response :success
     assert_select 'a[href=?]', login_path

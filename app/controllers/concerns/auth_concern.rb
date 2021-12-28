@@ -16,8 +16,10 @@ module AuthConcern
   end
 
   def log_out
-    session.delete :user_id
+    return unless logged_in?
+
     forget current_user
+    session.delete :user_id
     @current_user = Guest.new
     #session.clear
   end

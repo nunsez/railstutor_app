@@ -18,6 +18,8 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  rescue BCrypt::Errors::InvalidHash
+    false
   end
 
   def remember
