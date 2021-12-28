@@ -8,16 +8,16 @@ h1.text-center Sign up
       .mb-3
         = render 'shared/error_messages'
       .mb-3
-        = f.label :name
-        = f.text_field :name
+        = f.label :name, class: 'form-label'
+        = f.text_field :name, class: 'form-control'
       .mb-3
-        = f.label :email
-        = f.email_field :email
+        = f.label :email, class: 'form-label'
+        = f.email_field :email, class: 'form-control'
       .mb-3
-        = f.label :password
-        = f.password_field :password
-      .mb-3
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation
-      .mb-3
+        = f.label :password, class: 'form-label'
+        = f.password_field :password, class: 'form-control'
+      .mb-4
+        = f.label :password_confirmation, class: 'form-label'
+        = f.password_field :password_confirmation, class: 'form-control'
+      .d-grid
         = f.submit 'Create my account', class: 'btn btn-primary'
