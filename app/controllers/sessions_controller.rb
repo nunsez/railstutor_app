@@ -9,9 +9,11 @@ class SessionsController < ApplicationController
     @login_form = LoginForm.new(sessions_params)
 
     if @login_form.valid?
-      log_in @login_form.user
+      user = @login_form.user
+      log_in user
+      remember user
 
-      redirect_to @login_form.user, status: :see_other
+      redirect_to user, status: :see_other
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
+  class Rack::Test::CookieJar
+    def signed = self
+  end
+
   setup do
     @user = users(:alex)
   end
