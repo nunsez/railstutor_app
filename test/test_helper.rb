@@ -23,6 +23,7 @@ class ActiveSupport::TestCase
   def log_in_as(user, **kwargs)
     password = kwargs[:password] || DEFAULT_PASSWORD
     remember_me = kwargs[:remember_me] || '1'
+    
 
 
     if integration_test?
