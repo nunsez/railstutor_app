@@ -170,9 +170,6 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
-    turbo-rails (1.0.0)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     web-console (4.2.0)
@@ -201,7 +198,6 @@ DEPENDENCIES
   slim-rails
   sprockets-rails
   sqlite3 (~> 1.4)
-  turbo-rails
   tzinfo-data
   web-console
 
