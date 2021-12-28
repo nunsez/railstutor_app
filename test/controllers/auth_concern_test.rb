@@ -15,4 +15,9 @@ class AuthConcernTest < ActionView::TestCase
     @user.update_attribute :remember_digest, User.digest(User.new_token)
     assert_equal Guest.new, current_user
   end
+
+  test 'remember token from the model match the token in cookies' do
+    remember @user
+    assert_equal @user.remember_token, cookies[:remember_token]
+  end
 end
