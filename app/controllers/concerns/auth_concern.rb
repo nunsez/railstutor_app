@@ -46,6 +46,9 @@ module AuthConcern
   end
 
   def authenticate_user!
-    redirect_to login_path, status: :see_other unless logged_in?
+    return if logged_in?
+
+    # flash[:danger] = 'Please log in.'
+    redirect_to login_path, status: :see_other
   end
 end

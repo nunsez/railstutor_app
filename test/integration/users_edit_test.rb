@@ -2,10 +2,11 @@ require "test_helper"
 
 class UsersEditTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users :one
   end
 
   test 'unseccessful edit' do
+    log_in_as @user
     get edit_user_path(@user)
 
     assert_response :success
@@ -20,6 +21,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test 'successful edit' do
+    log_in_as @user
     get edit_user_path(@user)
 
     assert_response :success

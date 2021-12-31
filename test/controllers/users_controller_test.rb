@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users :one
+  end
+
   test 'valid routing' do
     assert_routing signup_path, controller: 'users', action: 'new'
     assert_routing({ path: users_path, method: :post }, controller: 'users', action: 'create')
@@ -13,5 +17,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'title', full_title('Signup')
+  end
+
+  test 'should redirect edit when not logged in' do
+    get edit_user_path(@user)
+
+    assert_redirected_to login_path
+  end
+
+  test 'should redirect update when not logged in' do
+    assert_no_changes -> { @user } do
+      patch user_path(@user), params: { user: { name: 'Foo Bar',
+                                                email: 'foo@bar.com' } }
+
+      @user.reload
+    end
+
+    assert_redirected_to login_path
   end
 end
