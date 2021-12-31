@@ -49,6 +49,7 @@ module AuthConcern
     return if logged_in?
 
     # flash[:danger] = 'Please log in.'
+    store_location
     redirect_to login_path, status: :see_other
   end
 
@@ -65,5 +66,16 @@ module AuthConcern
     else
       value.is_a?(ApplicationRecord) ? value == current_user : false
     end
+  end
+
+  def redirect_back_or(default, **kwargs)
+    url = session[:forwarding_url] || default
+
+    session.delete :forwarding_url
+    redirect_to url, **kwargs
+  end
+
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
   end
 end

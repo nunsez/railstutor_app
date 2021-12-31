@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
 
-      redirect_to user, status: :see_other
+      redirect_back_or user, status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
