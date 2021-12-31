@@ -51,4 +51,19 @@ module AuthConcern
     # flash[:danger] = 'Please log in.'
     redirect_to login_path, status: :see_other
   end
+
+  def correct_user
+    redirect_to root_path, status: :see_other unless current_user?(params[:id])
+  end
+
+  def current_user?(value)
+    case value
+    when String
+      value == current_user.id.to_s
+    when Integer
+      value == current_user.id
+    else
+      value.is_a?(ApplicationRecord) ? value == current_user : false
+    end
+  end
 end

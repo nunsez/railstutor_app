@@ -36,4 +36,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to login_path
   end
+
+  test 'should redirect edit when logged in as wrong user' do
+    log_in_as @other_user
+    get edit_user_path(@user)
+
+    assert_redirected_to root_path
+  end
+
+  test 'should redirect update when logged in as wrong user' do
+    log_in_as @other_user
+
+    assert_no_changes -> { @user } do
+      patch user_path(@user), params: { user: { name: 'Foo Bar',
+                                                email: 'foo@bar.com' } }
+
+      @user.reload
+    end
+
+    assert_redirected_to root_path
+  end
 end
