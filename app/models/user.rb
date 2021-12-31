@@ -10,7 +10,7 @@ class User < ApplicationRecord
                     # format: { with: URI::MailTo::EMAIL_REGEXP }, # bad validation: 'user@invalid' marks as valid
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, allow_blank: true
 
   def valid_password?(password)
     authenticate(password) if password_digest.present?

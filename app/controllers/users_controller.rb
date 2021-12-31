@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
 
     if @user.update(users_params)
-      flash[:success] = 'The data was update successfully'
+      flash[:success] = 'Profile updated!'
       redirect_to @user, status: :see_other
     else
       render :edit, status: :unprocessable_entity
