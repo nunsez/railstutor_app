@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def new
     redirect_to current_user, status: :found unless current_user.guest?
-
     @user = User.new
   end
 
@@ -11,7 +10,6 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = 'Welcome to the Sample App!'
-
       redirect_to @user, status: :see_other
     else
       render :new, status: :unprocessable_entity
@@ -24,6 +22,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_id(params[:id])
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+
+    if @user.update(users_params)
+      flash[:success] = 'The data was update successfully'
+      redirect_to @user, status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
