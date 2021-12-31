@@ -20,7 +20,7 @@ header.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bg-gradient
 
             ul.dropdown-menu aria-labelledby='navbarDropdownMenuLink'
               li = link_to 'Profile', current_user, class: 'dropdown-item'
-              li = link_to 'Settings', '#', class: 'dropdown-item'
+              li = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
               li: hr.dropdown-divider
               li = button_to  'Log out', logout_path, method: :delete, class: 'dropdown-item'
 

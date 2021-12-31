@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
   end
 
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
   private
 
   def users_params

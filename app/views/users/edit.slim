@@ -1,10 +1,10 @@
-- provide :title, 'Signup'
+- provide :title, 'Edit user'
 
-h1.text-center Sign up
+h1.text-center Update your profile
 
 .row.mt-5
   .col-md-6.mx-auto
-    = form_with model: @user, class: 'new_user' do |f|
+    = form_with model: @user, class: 'new_user mb-3' do |f|
       .mb-3
         = render 'error_messages'
       .mb-3
@@ -20,4 +20,8 @@ h1.text-center Sign up
         = f.label :password_confirmation, class: 'form-label'
         = f.password_field :password_confirmation, class: 'form-control'
       .d-grid
-        = f.submit 'Create my account', class: 'btn btn-primary'
+        = f.submit 'Save changes', class: 'btn btn-primary'
+
+    .gravatar-edit
+      = gravatar_for @user
+      = link_to 'change', 'https://gravatar.com/emails', target: '_blank'
