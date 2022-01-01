@@ -7,12 +7,18 @@ header.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bg-gradient
 
     nav#navbarNav.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav
-        li.nav-item = link_to 'Home', root_path, class: nav_classes('home')
-        li.nav-item = link_to 'Help', help_path, class: nav_classes('help')
+        li.nav-item
+          = link_to_unless_current 'Home', root_path, class: 'nav-link' do |name|
+            span.nav-link.active = name
+        li.nav-item
+          = link_to_unless_current 'Help', help_path, class: 'nav-link' do |name|
+            span.nav-link.active = name
 
         - if logged_in?
-          li.nav-tem = link_to 'Users', users_path, class: nav_classes('users')
-          li.nav-tem.dropdown
+          li.nav-item
+            = link_to_unless_current 'Users', users_path, class: 'nav-link' do |name|
+              span.nav-link.active = name
+          li.nav-item.dropdown
             = link_to 'Account', '#', id: 'navbarDropdownMenuLink',
                                       class: 'nav-link dropdown-toggle',
                                       role: 'button', data: { 'bs-toggle': 'dropdown' },
@@ -25,4 +31,6 @@ header.navbar.navbar-expand-lg.navbar-dark.bg-secondary.bg-gradient
               li = button_to  'Log out', logout_path, method: :delete, class: 'dropdown-item'
 
         - else
-          li.nav-item = link_to 'Log in', login_path, class: nav_classes('login')
+          li.nav-item
+            = link_to_unless_current 'Log in', login_path, class: 'nav-link' do |name|
+              span.nav-link.active = name
