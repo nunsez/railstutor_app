@@ -6,6 +6,6 @@ ul.users
   - @users.each do |user|
     li = link_to user
       = gravatar_for user, size: 50
-      = user.name
+      span = user.name
 
 = paginate @users, window: 2, views_prefix: 'users'
