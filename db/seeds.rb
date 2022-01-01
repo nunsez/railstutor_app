@@ -1,8 +1,8 @@
 User.create name: 'Test User',
             email: 'u@test.gg',
             password: 'qwerty',
-            password_confirmation: 'qwerty'
-
+            password_confirmation: 'qwerty',
+            admin: true
 
 99.times do |n|
   name = Faker::Name.unique.name
