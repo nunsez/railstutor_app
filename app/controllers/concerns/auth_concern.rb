@@ -45,6 +45,10 @@ module AuthConcern
     Guest.new
   end
 
+  def admin_user
+    redirect_to root_path unless current_user.admin?
+  end
+
   def authenticate_user!
     return if logged_in?
 

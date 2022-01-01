@@ -54,4 +54,21 @@ ul.users {
     display: inline-block;
     text-decoration: none;
   }
+
+  .delete-user {
+    display: inline-flex;
+    span {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    button[type='submit'] {
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+      color: $clr-error;
+      background-color: transparent;
+    }
+  }
 }
