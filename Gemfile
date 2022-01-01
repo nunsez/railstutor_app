@@ -8,6 +8,7 @@ gem 'puma', '~> 5.0'
 
 gem 'bcrypt'
 gem 'importmap-rails'
+gem 'kaminari'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
