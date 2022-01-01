@@ -49,4 +49,9 @@ ul.users {
   li:not(:last-of-type) {
     border-bottom: 1px solid $clr-light-gray;
   }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
 }

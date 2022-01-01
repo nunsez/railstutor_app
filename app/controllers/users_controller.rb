@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: %i[edit update]
 
   def index
-    @users = User.all
+    page = params[:page]
+    @users = User.page(page).per(5)
   end
 
   def new

@@ -4,6 +4,8 @@ h1 All users
 
 ul.users
   - @users.each do |user|
-    li
+    li = link_to user
       = gravatar_for user, size: 50
-      = link_to user.name, user
+      = user.name
+
+= paginate @users, window: 2, views_prefix: 'users'
