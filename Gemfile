@@ -18,6 +18,7 @@ end
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'faker'
   gem 'minitest-reporters'
   gem 'rexml'
   gem 'sqlite3', '~> 1.4' # dependencies: sudo apt install -y libsqlite3-dev
