@@ -15,6 +15,8 @@ aside {
     }
 
     h1 {
+      display: flex;
+
       font-size: 1.4rem;
       text-align: start;
       letter-spacing: -1px;
@@ -25,7 +27,6 @@ aside {
 }
 
 .gravatar {
-  float: left;
   margin-right: 0.625rem;
 }
 
@@ -35,4 +36,17 @@ aside {
 
 #error_explanation {
   color: $clr-error;
+}
+
+ul.users {
+  list-style: none;
+
+  li {
+    margin: 0;
+    padding: 0.625rem 0;
+  }
+
+  li:not(:last-of-type) {
+    border-bottom: 1px solid $clr-light-gray;
+  }
 }

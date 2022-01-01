@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[edit update]
+  before_action :authenticate_user!, only: %i[index edit update]
   before_action :correct_user, only: %i[edit update]
+
+  def index
+    @users = User.all
+  end
 
   def new
     redirect_to current_user, status: :found unless current_user.guest?
