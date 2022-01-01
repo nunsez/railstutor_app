@@ -51,5 +51,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     log_in_as @user
     assert_redirected_to edit_user_path(@user)
+    refute session[:forwarding_url]
   end
 end
