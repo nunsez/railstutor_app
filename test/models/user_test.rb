@@ -95,6 +95,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'authenticated? should return false for a user with nil remember_digest' do
-    refute @user.authenticated? nil
+    refute @user.authenticated? :remember, nil
   end
 end

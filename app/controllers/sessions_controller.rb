@@ -11,10 +11,15 @@ class SessionsController < ApplicationController
     if @login_form.valid?
       user = @login_form.user
 
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      if user.activated?
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_back_or user, status: :see_other
+      else
+        flash[:warning] = 'Account not activated. Check your email for the activation link.'
+        redirect_to root_path, status: :see_other
+      end
 
-      redirect_back_or user, status: :see_other
     else
       render :new, status: :unprocessable_entity
     end

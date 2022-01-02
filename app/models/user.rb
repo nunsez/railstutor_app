@@ -17,8 +17,9 @@ class User < ApplicationRecord
     authenticate(password) if password_digest.present?
   end
 
-  def authenticated?(remember_token)
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send "#{attribute}_digest"
+    BCrypt::Password.new(digest).is_password?(token)
   rescue BCrypt::Errors::InvalidHash
     false
   end

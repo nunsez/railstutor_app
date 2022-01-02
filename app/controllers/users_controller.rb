@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       # log_in @user
       # redirect_to @user, status: :see_other
-      flash[:success] = 'Welcome to the Sample App!'
+      # flash[:success] = 'Welcome to the Sample App!'
       UserMailer.account_activation(@user).deliver_now
       flash[:info] = 'Please check your email too activate your account.'
       redirect_to root_path, status: :see_other
