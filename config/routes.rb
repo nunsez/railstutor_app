@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
 
   resources :users, except: %w[new], concerns: :paginatable
+  resources :account_activations, only: :edit
 
   root 'static_pages#home'
 end
