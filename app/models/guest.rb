@@ -9,5 +9,7 @@ class Guest
 
   def created_at = nil
 
-  def ==(_) = true
+  def ==(obj)
+    obj.is_a? self.class
+  end
 end

@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
+  # setup do
+  #   ActionMailer::Base.deliveries.clear
+  # end
+
   test 'invalid signup information' do
     get signup_path
 
@@ -21,10 +25,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select 'li', "Password confirmation doesn't match Password"
   end
 
-  test 'valid signup infromation' do
+  test 'valid signup infromation with account activation' do
     get signup_path
 
-    assert_difference -> { User.count }, 1 do
+    assert_difference -> { User.count } => 1,
+                      -> { ActionMailer::Base.deliveries.size } => 1 do
       post users_path,  params: { user: { name: 'Example User',
                                           email: 'user@example.com',
                                           password: DEFAULT_PASSWORD,
@@ -32,12 +37,39 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
 
     fresh_user = User.last
-    # assert_redirected_to fresh_user
-    # assert_equal 'Welcome to the Sample App!', flash[:success]
-    follow_redirect!
-    # assert logged_in?
-    # assert_equal fresh_user, current_user
-    assert flash
-    # assert_select 'h1', 'user@example.com'
+    fresh_mail = ActionMailer::Base.deliveries.last
+    matched = fresh_mail.body.encoded.match /account_activations\/(.*)\/edit/
+    remember_token = matched[1]
+
+    refute_predicate fresh_user, :activated?
+
+    log_in_as fresh_user
+    refute logged_in?
+    assert flash[:warning]
+
+    assert_no_changes -> { fresh_user.activated? } do
+      get edit_account_activation_path('invalid token')
+      fresh_user.reload
+    end
+
+    refute logged_in?
+    assert flash[:warning]
+
+    assert_no_changes -> { fresh_user.activated? } do
+      get edit_account_activation_path(remember_token, email: 'wrong@email.bad')
+      fresh_user.reload
+    end
+
+    refute logged_in?
+    assert flash[:warning]
+
+    assert_changes -> { fresh_user.activated? } do
+      get edit_account_activation_path(remember_token, email: fresh_user.email)
+      fresh_user.reload
+    end
+
+    assert_redirected_to fresh_user
+    assert logged_in?
+    assert flash[:success]
   end
 end

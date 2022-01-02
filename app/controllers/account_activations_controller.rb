@@ -4,7 +4,7 @@ class AccountActivationsController < ApplicationController
 
     case
     when !user
-      flash[:danger] = 'User not found.'
+      flash[:warning] = 'User not found.'
       redirect_to root_path, status: :unprocessable_entity
 
     when user.activated?
@@ -12,17 +12,17 @@ class AccountActivationsController < ApplicationController
       redirect_to user, status: :see_other
 
     when user.authenticated?(:activation, params[:id])
-      if user.update activated: true, activated_at: Time.zone.now
+      if user.activate
         log_in user
         flash[:success] = 'Account activated!'
         redirect_to user, status: :see_other
       else
-        flash[:danger] = 'Invalid activation link.'
+        flash[:warning] = 'Invalid activation link.'
         redirect_to root_path, status: :unprocessable_entity
       end
 
     else
-      flash[:danger] = 'Something went wrong, try again later.'
+      flash[:warning] = 'Something went wrong, try again later.'
       redirect_to root_path, status: :unprocessable_entity
     end
   end
