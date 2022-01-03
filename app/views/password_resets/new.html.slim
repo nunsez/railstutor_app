@@ -1,0 +1,14 @@
+- provide :title, 'Forgot password'
+
+h1.text-center Forgot password
+
+.row.mt-5
+  .col-md-6.mx-auto
+    = form_with url: password_resets_path, model: @password_reset_form do |f|
+      .mb-3
+        = f.label :email, class: 'form-label'
+        = f.email_field :email, class: 'form-control'
+        p.text-danger
+          = @password_reset_form.errors[:email].join(', ')
+      .mb-3.d-grid
+        = f.submit 'Submit', class: 'btn btn-primary'

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
+  root 'static_pages#home'
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
@@ -12,8 +14,7 @@ Rails.application.routes.draw do
   get 'help', to: 'static_pages#help'
   get 'signup', to: 'users#new'
 
-  resources :users, except: %w[new], concerns: :paginatable
+  resources :users, except: %i[new], concerns: :paginatable
   resources :account_activations, only: :edit
-
-  root 'static_pages#home'
+  resources :password_resets, only: %i[new create edit update], param: :token
 end
