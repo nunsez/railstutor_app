@@ -79,7 +79,7 @@ Rails.application.configure do
     host: 'localhost:3000'
   }
 
-  ApplicationMailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587
     authentication: :plain,
