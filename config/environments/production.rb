@@ -84,11 +84,10 @@ Rails.application.configure do
     # domain: 'heroku.com',
 
     address: 'smtp.gmail.com',
-    port: 465,
+    port: 587,
     domain: 'gmail.com',
     user_name: ENV['GMAIL_USERNAME'],
     password: ENV['GMAIL_PASSWORD'],
     authentication: :plain,
-    enable_starttls_auto: true
   }
 end
