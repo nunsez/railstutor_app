@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +16,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     # Test first page
     assert_select '.users > *', count: 5
 
-    User.page(1).per(5).each do |user|
+    User.active.page(1).per(5).each do |user|
       assert_select 'a[href=?]', user_path(user), user.name
     end
 
@@ -26,7 +26,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select '.users > *', count: 5
 
-    User.page(2).per(5).each do |user|
+    User.active.page(2).per(5).each do |user|
       assert_select 'a[href=?]', user_path(user), user.name
     end
   end
@@ -52,5 +52,10 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path
 
     assert_select '.users .delete-user', false
+  end
+
+  test 'inactive users are not displayed in index' do
+    @user.update activated: false
+    refute_equal User.count, User.active.count
   end
 end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     page = params[:page]
-    @users = User.page(page).per(5)
+    @users = User.active.page(page).per(5)
   end
 
   def new
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id params[:id]
+    redirect_to root_path, status: :see_other unless @user.activated?
   end
 
   def edit

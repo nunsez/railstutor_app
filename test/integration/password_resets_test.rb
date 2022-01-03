@@ -72,4 +72,23 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     refute_predicate flash, :empty?
     assert_redirected_to @user
   end
+
+  test 'expired token' do
+    get new_password_reset_path
+    post password_resets_path, params: { password_reset_form: { email: @user.email } }
+
+    mail = ActionMailer::Base.deliveries.last
+    matched = mail.body.encoded.match /password_resets\/(.*)\/edit/
+    reset_token = matched[1]
+
+    @user.update reset_sent_at: 3.hours.ago
+    patch password_reset_path reset_token,
+      params: { email: @user.email,
+                user: { password: 'foobar',
+                        password_confirmation: 'foobar' } }
+
+    assert_redirected_to new_password_reset_path
+    follow_redirect!
+    assert flash[:danger].include? 'expired'
+  end
 end

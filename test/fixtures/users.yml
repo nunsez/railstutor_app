@@ -19,7 +19,7 @@ three:
   name: Name Three
   email: three@example.com
   password_digest: <%= User.digest('password') %>
-  activated: true
+  activated: false
   activated_at: <%= Time.zone.now %>
 
 four:

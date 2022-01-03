@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
 
+  scope :active, -> { where(activated: true) }
+
   has_secure_password
 
   before_create :create_activation_digest
