@@ -14,9 +14,9 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_select 'nav ul.pagination'
 
     # Test first page
-    assert_select '.users > *', count: 5
+    assert_select '.users > *', count: 10
 
-    User.active.page(1).per(5).each do |user|
+    User.active.page(1).each do |user|
       assert_select 'a[href=?]', user_path(user), user.name
     end
 
@@ -24,9 +24,10 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path(2)
 
     assert_response :success
-    assert_select '.users > *', count: 5
+    # 18 active users from fixtures. 10 per page
+    assert_select '.users > *', count: 8
 
-    User.active.page(2).per(5).each do |user|
+    User.active.page(2).each do |user|
       assert_select 'a[href=?]', user_path(user), user.name
     end
   end
@@ -35,8 +36,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as @admin
     get users_path
 
-    admin_users_count = User.page(1).per(5).filter(&:admin?).count
-    assert_select '.users .delete-user', count: 5 - admin_users_count
+    admin_users_count = User.page(1).filter(&:admin?).count
+    assert_select '.users .delete-user', count: 10 - admin_users_count
 
     assert_difference -> { User.count }, -1 do
       delete user_path(@user)

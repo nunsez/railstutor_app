@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     page = params[:page]
-    @users = User.active.page(page).per(5)
+    @users = User.active.page(page)
   end
 
   def new

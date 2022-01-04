@@ -16,6 +16,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, allow_blank: true
 
+  paginates_per 10
+
   def valid_password?(password)
     authenticate(password) if password_digest.present?
   end
