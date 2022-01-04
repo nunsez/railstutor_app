@@ -6,7 +6,7 @@ User.create name: 'Test User',
             activated: true,
             activated_at: Time.zone.now
 
-99.times do |n|
+50.times do |n|
   name = Faker::Name.unique.name
   email = Faker::Internet.safe_email name: name
   password = 'password'
@@ -18,4 +18,11 @@ User.create name: 'Test User',
                 password_confirmation: password_confirmation,
                 activated: true,
                 activated_at: Time.zone.now
+end
+
+users = User.order(:created_at).take(6)
+
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+  users.each { _1.microposts.create! content: content }
 end

@@ -1,0 +1,11 @@
+.micropost id="micropost-#{micropost.id}"
+  = link_to gravatar_for(micropost.user, size: 60), micropost.user
+  .content-section
+    .user
+      = link_to micropost.user.name, micropost.user
+    .content
+      = micropost.content
+    .timestamp
+      ' Posted
+      => time_ago_in_words micropost.created_at
+      | ago.

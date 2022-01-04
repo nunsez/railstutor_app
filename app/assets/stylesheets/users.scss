@@ -72,3 +72,27 @@ ul.users {
     }
   }
 }
+
+section.microposts {
+  .micropost {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem;
+  }
+
+  .micropost:not(:last-of-type) {
+    border-bottom: 1px solid $clr-light-gray;
+  }
+
+  .user a {
+    text-decoration: none;
+  }
+
+  .timestamp {
+    color: $clr-light-gray;
+  }
+
+  nav {
+    margin-top: 2rem;
+  }
+}

@@ -6,3 +6,11 @@
       h1
         = gravatar_for @user
         span = @user.email
+
+  section.col-md-8.microposts
+    - if @user.microposts.any?
+      h3 Microposts (#{@user.microposts.count})
+      .microposts-grid
+        = render @microposts
+
+      = paginate @microposts, window: 2, views_prefix: 'users'

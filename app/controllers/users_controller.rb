@@ -27,7 +27,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id params[:id]
-    redirect_to root_path, status: :see_other unless @user.activated?
+
+    unless @user&.activated?
+      redirect_to root_path, status: :see_other
+      return
+    end
+
+    page = params[:page]
+    @microposts = @user.microposts.page(page)
   end
 
   def edit
