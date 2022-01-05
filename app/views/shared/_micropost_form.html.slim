@@ -3,5 +3,9 @@
     = f.text_area :content, placeholder: 'Compose new micropost...'
     p.text-danger
       = @micropost.errors[:content].join(', ')
-  .d-grid
+    = f.file_field :picture, accept: 'image/jpeg,image/png,image/gif'
+    p.text-danger
+      = @micropost.errors[:picture].join(', ')
+  .d-grid.mb-3
     = f.submit 'Post', class: 'btn btn-primary'
+  

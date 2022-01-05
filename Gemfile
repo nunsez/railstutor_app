@@ -7,8 +7,10 @@ gem 'rails', github: 'rails/rails', branch: '7-0-stable'
 gem 'puma', '~> 5.0'
 
 gem 'bcrypt'
+gem 'carrierwave'
 gem 'importmap-rails'
 gem 'kaminari'
+gem 'mini_magick' # dependencies: sudo apt install -y imagemagick
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
