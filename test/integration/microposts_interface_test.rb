@@ -37,4 +37,22 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     get user_path(users :one)
     assert_select '.delete-micropost', false
   end
+
+  test 'micropost sidebar count' do
+    log_in_as @user
+    get root_path
+
+    assert_select '.user-card div', text: '52 microposts'
+
+    other_user = users(:four)
+    log_in_as other_user
+
+    get root_path
+    assert_select '.user-card div', text: '0 microposts'
+
+    other_user.microposts.create content: 'Lorem ipsum'
+
+    get root_path
+    assert_select '.user-card div', text: '1 micropost'
+  end
 end
