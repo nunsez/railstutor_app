@@ -9,6 +9,8 @@ class Guest
 
   def created_at = nil
 
+  def microposts = []
+
   def ==(obj)
     obj.is_a? self.class
   end

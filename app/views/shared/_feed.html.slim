@@ -1,0 +1,5 @@
+- if @feed_items.any?
+  section.microposts
+    = render @feed_items
+
+  = paginate @feed_items, window: 2, views_prefix: 'users'

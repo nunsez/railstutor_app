@@ -1,0 +1,20 @@
+// @import 'variables';
+
+@mixin btn-delete($item) {
+  .delete-#{$item} {
+    display: inline-flex;
+
+    span {
+      margin-left: 0.5rem;
+    }
+
+    button[type='submit'] {
+      margin: 0 0 0 0.5rem;
+      padding: 0;
+      border: 0;
+
+      color: $clr-error;
+      background-color: transparent;
+    }
+  }
+}

@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :users, except: %i[new], concerns: :paginatable
   resources :account_activations, only: :edit
   resources :password_resets, only: %i[new create edit update], param: :token
+  resources :microposts, only: %i[create destroy]
 end
