@@ -3,6 +3,14 @@ class User < ApplicationRecord
 
   has_secure_password
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: :follower_id,
+                                  dependent: :destroy
+  has_many :passive_relationships,  class_name: 'Relationship',
+                                    foreign_key: :followed_id,
+                                    dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships
 
   scope :active, -> { where(activated: true) }
 
@@ -61,6 +69,18 @@ class User < ApplicationRecord
 
   def feed
     Micropost.where(user_id: id)
+  end
+
+  def follow(target_user)
+    active_relationships.create followed_id: target_user.id
+  end
+
+  def unfollow(target_user)
+    active_relationships.find_by(followed_id: target_user.id).destroy
+  end
+
+  def following?(target_user)
+    following.include? target_user
   end
 
   def guest? = false
