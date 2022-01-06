@@ -3,17 +3,22 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
-  # root 'static_pages#home'
-  get '/(posts/:page)', to: 'static_pages#home', as: :root
+  root 'static_pages#home'
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-
-  get 'about', to: 'static_pages#about'
-  get 'contact', to: 'static_pages#contact'
-  get 'help', to: 'static_pages#help'
   get 'signup', to: 'users#new'
+
+  scope module: :sessions do
+    get 'login', action: :new
+    post 'login', action: :create
+    delete 'logout', action: :destroy
+  end
+
+  scope module: :static_pages do
+    get '(posts/:page)', action: :home, as: :home
+    get 'about'
+    get 'contact'
+    get 'help'
+  end
 
   resources :users, except: %i[new], concerns: :paginatable do
     member do
