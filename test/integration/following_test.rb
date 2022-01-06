@@ -27,4 +27,12 @@ class FollowingTest < ActionDispatch::IntegrationTest
       assert_select 'a[href=?]', user_path(user)
     end
   end
+
+  test 'feed on home page' do
+    get root_path
+
+    @user.feed.page(1).each do |post|
+      assert_select "#micropost-#{post.id}"
+    end
+  end
 end

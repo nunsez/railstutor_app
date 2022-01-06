@@ -50,7 +50,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
 
     assert_select '.user-card div', text: '52 microposts'
 
-    other_user = users(:four)
+    other_user = users(:user_1)
     log_in_as other_user
 
     get root_path
