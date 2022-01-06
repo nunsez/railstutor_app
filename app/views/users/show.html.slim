@@ -10,6 +10,8 @@
     = render 'shared/stats'
 
   section.col-md-8.microposts
+    = render 'follow_form'
+
     - if @user.microposts.any?
       h3 Microposts (#{@user.microposts.count})
       .microposts-grid

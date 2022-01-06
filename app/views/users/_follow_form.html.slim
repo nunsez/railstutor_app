@@ -1,5 +1,5 @@
-- unless current_user? @user
-  #follow-form
+- if logged_in?
+  #follow-form.mb-3
     - if current_user.following? @user
       = render 'unfollow'
     - else
