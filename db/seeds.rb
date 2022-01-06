@@ -26,3 +26,11 @@ users = User.order(:created_at).take(6)
   content = Faker::Lorem.sentence(word_count: 5)
   users.each { _1.microposts.create! content: content }
 end
+
+users = User.all
+user = users.first
+following = users[2..30]
+followers = users[3..15]
+
+following.each { user.follow _1 }
+followers.each { _1.follow user }
