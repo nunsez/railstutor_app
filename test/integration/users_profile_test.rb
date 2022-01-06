@@ -10,7 +10,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'title', full_title(@user.name)
-    assert_select 'h1', text: @user.email
+    assert_select 'h1', text: @user.name
     assert_select 'h1 > img.gravatar'
     assert_select '.microposts > nav > .pagination'
 

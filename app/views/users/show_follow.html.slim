@@ -1,0 +1,21 @@
+- provide :title, @title
+
+.row
+  aside.col-md-4
+    section.user_info
+      h1
+        = gravatar_for @user
+        span = @user.name
+    = render 'shared/stats'
+
+    - if @users.any?
+      .user_avatars
+        - @users.each do
+          = link_to gravatar_for(_1, size: 30), _1
+
+  .col-md-8
+    h3 = @title
+    - if @users.any?
+      .users.follow
+        = render @users
+      = paginate @users, window: 2, views_prefix: 'users'

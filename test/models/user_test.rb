@@ -108,8 +108,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'should follow and unfollow a user' do
-    user_one = users :one
-    user_two = users :two
+    user_one = users :two
+    user_two = users :four
 
     refute user_two.following? user_one
     user_two.follow user_one

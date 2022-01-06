@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[index edit update destroy]
+  before_action :authenticate_user!, only: %i[index edit update destroy following followers]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: :destroy
 
@@ -63,6 +63,20 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
+  end
+
+  def following
+    @title = 'Following'
+    @user = User.find_by_id params[:id]
+    @users = @user.following.page params[:page]
+    render 'show_follow'
+  end
+
+  def followers
+    @title = 'Followers'
+    @user = User.find_by_id params[:id]
+    @users = @user.followers.page params[:page]
+    render 'show_follow'
   end
 
   private
