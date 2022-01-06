@@ -1,0 +1,11 @@
+- @user ||= current_user
+
+section.stats.d-flex.gap-3
+  = link_to following_user_path(@user), class: 'd-block mb-1'
+    strong#following.stat
+      => @user.following.count
+    | following
+  = link_to followers_user_path(@user), class: 'd-block'
+    strong#followers.stat
+      => @user.followers.count
+    | followers

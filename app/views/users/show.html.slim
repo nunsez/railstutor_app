@@ -5,7 +5,9 @@
     section.user_info
       h1
         = gravatar_for @user
-        span = @user.email
+        span = @user.name
+
+    = render 'shared/stats'
 
   section.col-md-8.microposts
     - if @user.microposts.any?
