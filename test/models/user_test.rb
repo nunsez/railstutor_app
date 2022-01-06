@@ -118,4 +118,22 @@ class UserTest < ActiveSupport::TestCase
     user_two.unfollow user_one
     refute user_two.following? user_one
   end
+
+  test 'feed should have the right posts' do
+    user_one = users :one
+    user_two = users :two
+    user_four = users :four
+
+    user_two.microposts.each do
+      assert user_one.feed.include? _1
+    end
+
+    user_one.microposts.each do
+      assert user_one.feed.include? _1
+    end
+
+    user_four.microposts.each do
+      refute user_two.feed.include? _1
+    end
+  end
 end

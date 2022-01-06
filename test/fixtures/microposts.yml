@@ -25,6 +25,16 @@ five:
   user: two
   created_at: <%= 10.minutes.ago %>
 
+six:
+  content: content from post five
+  user: four
+  created_at: <%= 10.minutes.ago %>
+
+seven:
+  content: content from post five
+  user: four
+  created_at: <%= 10.minutes.ago %>
+
 <% 1.upto(50) do |n| %>
 micropost_<%= n %>:
   content: '<%= Faker::Lorem.sentence(word_count: 5) %>'
