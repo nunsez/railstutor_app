@@ -14,6 +14,7 @@ gem 'mini_magick' # dependencies: sudo apt install -y imagemagick
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'sprockets-rails'
+gem 'turbo-rails'
 
 group :production do
   gem 'pg'
