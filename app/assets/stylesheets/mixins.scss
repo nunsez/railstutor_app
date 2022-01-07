@@ -8,13 +8,10 @@
       margin-left: 0.5rem;
     }
 
-    button[type='submit'] {
-      margin: 0 0 0 0.5rem;
-      padding: 0;
-      border: 0;
-
+    a {
+      margin-left: 0.5rem;
       color: $clr-error;
-      background-color: transparent;
+      text-decoration: none;
     }
   }
 }

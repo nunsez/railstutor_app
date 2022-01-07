@@ -15,4 +15,4 @@
       - if current_user? micropost.user
         .delete-micropost
           span |
-          = button_to 'delete', micropost, method: 'delete'
+          = link_to 'delete', micropost, data: { turbo_method: :delete }

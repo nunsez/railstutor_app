@@ -36,7 +36,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select 'a[href=?]', login_path, false
-    assert_select 'form[action=?]', logout_path
+    assert_select 'a[href=?]', logout_path
     assert_select 'a[href=?]', user_path(@user)
 
     # Logout asserts
@@ -60,7 +60,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select 'a[href=?]', login_path
-    assert_select 'form[action=?]', logout_path, false
+    assert_select 'a[href=?]', logout_path, false
     assert_select 'a[href=?]', user_path(@user), false
   end
 

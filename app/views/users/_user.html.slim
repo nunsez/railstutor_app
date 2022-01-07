@@ -5,4 +5,4 @@
   - if current_user.admin? && !user.admin?
     .delete-user
       span |
-      = button_to 'delete', user, method: 'delete'
+      = link_to 'delete', user, data: { turbo_method: :delete }
